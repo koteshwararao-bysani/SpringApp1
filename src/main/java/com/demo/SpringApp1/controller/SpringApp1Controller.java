@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpringApp1Controller {
 
     @PostMapping("/hi")
-    public ResponseEntity<String> sayHiMsg(@RequestParam(required = true) String name){
+    public ResponseEntity<String> sayHiMsg(@RequestParam(required = false) String name){
         if(name != null){
             return ResponseEntity.ok("Hi Welcome .... "+name);
         }else{

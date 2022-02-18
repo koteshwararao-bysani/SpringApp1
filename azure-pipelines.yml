@@ -1,4 +1,11 @@
 # Maven
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial(b280f35c-99de-44a4-81e6-b8078011084c)'
+    appType: 'webApp'
+    WebAppName: 'ErrorHandlingWebApp'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java

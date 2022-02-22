@@ -22,8 +22,8 @@ public class StorageAccountController {
     @Value("https://koteshstorageaccount.blob.core.windows.net/containerpublic/candlestick-PATTERN.jpg")
     private Resource blobFile;
 
-    @Value("${storage-account-key1}")
-    private String storageConnectionStr;
+//    @Value("${storage-account-key1}")
+//    private String storageConnectionStr;
 
     @GetMapping("/readBlobFile")
     public String readBlobFile() throws IOException {
@@ -44,8 +44,8 @@ public class StorageAccountController {
                 .body(new ByteArrayResource(data));
     }
 
-    @GetMapping("/getconnectionstr")
-    public ResponseEntity<String> getStorageConnStrFromKeyVaults(){
-        return ResponseEntity.ok("To Connect Azure Storage Account :: Connection URL is --->  "+storageConnectionStr);
-    }
+//    @GetMapping("/getconnectionstr")
+//    public ResponseEntity<String> getStorageConnStrFromKeyVaults(){
+//        return ResponseEntity.ok("To Connect Azure Storage Account :: Connection URL is --->  "+storageConnectionStr);
+//    }
 }

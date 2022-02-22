@@ -22,7 +22,7 @@ public class StorageAccountController {
     @Value("https://koteshstorageaccount.blob.core.windows.net/containerpublic/candlestick-PATTERN.jpg")
     private Resource publicBlobFile;
 
-    @Value("https://privatestorageaccount7.blob.core.windows.net/privatecontainer/Forex-Chart-Patterns-Cheatsheet.png")
+    @Value("https://privatestorageaccount7.blob.core.windows.net/imagecontainer/Forex-Chart-Patterns-Cheatsheet.png")
     private Resource privateBlobFile;
 
 //    @Value("${storage-account-key1}")

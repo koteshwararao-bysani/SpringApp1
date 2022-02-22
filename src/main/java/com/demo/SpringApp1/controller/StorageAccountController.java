@@ -20,7 +20,10 @@ public class StorageAccountController {
 
     //@Value("azure-blob://containerpublic/candlestick-PATTERN.jpg")
     @Value("https://koteshstorageaccount.blob.core.windows.net/containerpublic/candlestick-PATTERN.jpg")
-    private Resource blobFile;
+    private Resource publicBlobFile;
+
+    @Value("https://privatestorageaccount7.blob.core.windows.net/privatecontainer/Forex-Chart-Patterns-Cheatsheet.png")
+    private Resource privateBlobFile;
 
 //    @Value("${storage-account-key1}")
 //    private String storageConnectionStr;
@@ -29,14 +32,14 @@ public class StorageAccountController {
     public String readBlobFile() throws IOException {
         System.out.println("i am from StorageAccountController :: readBlobFile()");
         return StreamUtils.copyToString(
-                this.blobFile.getInputStream(),
+                this.publicBlobFile.getInputStream(),
                 Charset.defaultCharset());
     }
 
     @GetMapping("/download/publicfile")
-    public ResponseEntity<ByteArrayResource> readBlobFile1() throws IOException {
-        System.out.println("i am from StorageAccountController :: readBlobFile1()");
-        byte[] data = this.blobFile.getInputStream().readAllBytes();
+    public ResponseEntity<ByteArrayResource> readPublicBlobFile() throws IOException {
+        System.out.println("i am from StorageAccountController :: readPublicBlobFile()");
+        byte[] data = this.publicBlobFile.getInputStream().readAllBytes();
         return ResponseEntity.ok()
                 .contentLength(data.length)
                 .header("content-type","application/octet-stream")
@@ -44,8 +47,15 @@ public class StorageAccountController {
                 .body(new ByteArrayResource(data));
     }
 
-//    @GetMapping("/getconnectionstr")
-//    public ResponseEntity<String> getStorageConnStrFromKeyVaults(){
-//        return ResponseEntity.ok("To Connect Azure Storage Account :: Connection URL is --->  "+storageConnectionStr);
-//    }
+    @GetMapping("/download/privatefile")
+    public ResponseEntity<ByteArrayResource> readBlobPrivateFile() throws IOException {
+        System.out.println("i am from StorageAccountController :: readBlobPrivateFile()");
+        byte[] data = this.privateBlobFile.getInputStream().readAllBytes();
+        return ResponseEntity.ok()
+                .contentLength(data.length)
+                .header("content-type","application/octet-stream")
+                .header("content-disposition","attachment; filename= file-image")
+                .body(new ByteArrayResource(data));
+    }
+
 }
